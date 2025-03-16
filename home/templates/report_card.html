@@ -1,0 +1,65 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Report Card</title>
+    <link rel="stylesheet" href="{% static 'report_card.css' %}">
+</head>
+<body>
+    <div class="report-container">
+        <div class="header">
+            <h1>Academic Report Card</h1>
+            <div class="student-info">
+                <div class="info-item">
+                    <span class="label">Student ID:</span>
+                    <span class="value" id="studentId">{{ mark.first.student.student_id }}</span>
+                </div>
+                <div class="info-item">
+                    <span class="label">Name:</span>
+                    <span class="value" id="studentName">{{ mark.first.student }}</span>
+                </div>
+                <div class="info-item">
+                    <span class="label">Class Rank:</span>
+                    <span class="value" id="studentRank">{{ mark.first.student.studentreportcard.first.rank }}</span>
+                </div>
+                <div class="info-item">
+                    <span class="label">Report Date:</span>
+                    <span class="value" id="reportDate">{{ mark.first.student.studentreportcard.first.data_of_report_card }}</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="marks-table">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Subject</th>
+                        <th>Marks Obtained</th>
+                        <th>Maximum Marks</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for mark in mark %}
+                    <tr>
+                        <td>{{ mark.subject }}</td>
+                        <td>{{ mark.marks }}</td>
+                        <td>100</td>
+                    </tr>
+                    {% endfor %}
+                    <tr class="total-row">
+                        <td>Total</td>
+                        <td>{{ total_mark.total_marks }}</td>
+                        <td>500</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="footer">
+            
+        </div>
+    </div>
+</body>
+</html>
